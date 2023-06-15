@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ManageObjectController!{% endblock %}
+
+{% block body %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Administration de l'object {{ object.nom }}</h1>
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Enregistrer</th>
+            <th>Supprimer</th>
+        </tr>
+        <tr>
+            <form method="post">
+                <input type="hidden" value="update" name="action" />
+                <td>
+                    <input type="text" value="{{ object.nom }}" id="nom" name="nomNew" />
+                </td>
+                <td>
+                    <textarea id="description" rows="5" cols="100" name="description">{{ object.description }}</textarea>
+                </td>
+                <td>
+                    <input type="submit" id="enregistrer{{ object.nom }}" value="Enregistrer" />
+                </td>
+            </form>
+            <form method="post">
+                <input type="hidden" value="delete" name="action"/>
+                <td>
+                    <input type="submit" id="supprimer{{ object.nom }}" value="Supprimer" />
+                </td>
+            </form>
+        </tr>
+    </table>
+</div>
+{% endblock %}

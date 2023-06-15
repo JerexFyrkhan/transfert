@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListObjectsController!{% endblock %}
+
+{% block body %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<div class="wrapper">
+    <h1>Liste des Objects</h1>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Description</th>
+        </tr>
+        {% for object in objects %}
+        <tr>
+            <td>{{ object.id }}</td>
+            <td>{{ object.nom }}</td>
+            <td>{{ object.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
