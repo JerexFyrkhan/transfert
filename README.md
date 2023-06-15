@@ -22,3 +22,20 @@ php bin/console make:entity
 ````shell
 php bin/console make:migration
 ````
+
+### Q3 :
+#### Installation du paquet
+````shell
+composer req --dev make doctrine/doctrine-fixtures-bundle
+composer require fakerphp/faker
+````
+
+#### Chargement des fictures
+````shell
+php bin/console doctrine:fixtures:load
+````
+
+### Q4 :
+````shell
+symfony console make:controller ListObjectsController
+````
