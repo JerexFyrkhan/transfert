@@ -38,4 +38,10 @@ php bin/console doctrine:fixtures:load
 ### Q4 :
 ````shell
 symfony console make:controller ListObjectsController
+symfony console make:controller ManageObjectController
+````
+
+### Q6 :
+````shell
+composer require league/commonmark
 ````

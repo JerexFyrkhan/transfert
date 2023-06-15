@@ -34,7 +34,7 @@
         <tr>
             <td>{{ object.id }}</td>
             <td>{{ object.nom }}</td>
-            <td>{{ object.description }}</td>
+            <td>{% apply markdown_to_html %}{{ object.description }}{% endapply %}</td>
         </tr>
         {% endfor %}
     </table>
