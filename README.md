@@ -45,3 +45,22 @@ symfony console make:controller ManageObjectController
 ````shell
 composer require league/commonmark
 ````
+
+### Q7 :
+#### Création de l'entité
+````shell
+php bin/console make:entity
+````
+#### Création de la table
+````shell
+php bin/console make:migration
+````
+
+### Q8 :
+````shell
+php bin/console make:user
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+php bin/console doctrine:fixtures:load
+php bin/console make:auth
+````

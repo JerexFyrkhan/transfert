@@ -17,7 +17,7 @@ class ListObjectsController extends AbstractController
         $this->object756Repository = $object756Repository;
     }
 
-    #[Route('/list/objects', name: 'app_list_objects')]
+    #[Route('/', name: 'app_list_objects')]
     public function index(): Response
     {
         $objects = $this->object756Repository->findAll();
