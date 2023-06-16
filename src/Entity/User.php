@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -19,6 +21,14 @@ class User implements UserInterface
 
     #[ORM\Column]
     private array $roles = [];
+
+    #[ORM\OneToMany(mappedBy: 'proprietaire', targetEntity: Object756::class)]
+    private Collection $objects756;
+
+    public function __construct()
+    {
+        $this->objects756 = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -73,5 +83,35 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Object756>
+     */
+    public function getObjects756(): Collection
+    {
+        return $this->objects756;
+    }
+
+    public function addObjects756(Object756 $objects756): static
+    {
+        if (!$this->objects756->contains($objects756)) {
+            $this->objects756->add($objects756);
+            $objects756->setProprietaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeObjects756(Object756 $objects756): static
+    {
+        if ($this->objects756->removeElement($objects756)) {
+            // set the owning side to null (unless already changed)
+            if ($objects756->getProprietaire() === $this) {
+                $objects756->setProprietaire(null);
+            }
+        }
+
+        return $this;
     }
 }

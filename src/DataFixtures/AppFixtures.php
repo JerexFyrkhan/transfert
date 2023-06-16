@@ -14,15 +14,6 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        $objects = [];
-        for ($i = 0; $i < 4; $i++) {
-            $objects[$i] = new Object756();
-            $objects[$i]->setNom($faker->lastName);
-            $objects[$i]->setDescription($faker->sentence(45));
-
-            $manager->persist($objects[$i]);
-        }
-
         $users = [];
         for ($i = 0; $i < 4; $i++) {
             $users[$i] = new User();
@@ -30,6 +21,16 @@ class AppFixtures extends Fixture
             $users[$i]->setRoles(['ROLE_USER']);
 
             $manager->persist($users[$i]);
+        }
+
+        $objects = [];
+        for ($i = 0; $i < 4; $i++) {
+            $objects[$i] = new Object756();
+            $objects[$i]->setNom($faker->lastName);
+            $objects[$i]->setDescription($faker->sentence(45));
+            $objects[$i]->setProprietaire($users[$i]);
+
+            $manager->persist($objects[$i]);
         }
 
         $manager->flush();
