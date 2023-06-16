@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Object756;
 use App\Repository\Object756Repository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -10,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class ListObjectsController extends AbstractController
+class NewObjectController extends AbstractController
 {
 
     private Object756Repository $object756Repository;
@@ -20,17 +21,25 @@ class ListObjectsController extends AbstractController
         $this->object756Repository = $object756Repository;
     }
 
-    #[Route('/', name: 'app_list_objects')]
+    #[Route('/new/object', name: 'app_new_object')]
     public function index(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         if (null !== $request->get('action')) {
-            if ('new' === $request->get('action')) {
-                return new RedirectResponse($this->urlGenerator->generate('app_new_object'));
+            if ('create' === $request->get('action')) {
+                $object756 = new Object756();
+                $object756->setNom($request->get('nomNew'));
+                $object756->setDescription($request->get('description'));
+                $object756->setProprietaire($this->getUser());
+
+                $this->object756Repository->save($object756, true);
+                return new RedirectResponse($this->urlGenerator->generate('app_list_objects'));
             }
         }
-        $objects = $this->object756Repository->findAll();
-        return $this->render('list_objects/index.html.twig', [
-            'objects' => $objects,
+
+        return $this->render('new_object/index.html.twig', [
+            'controller_name' => 'NewObjectController',
         ]);
     }
 }

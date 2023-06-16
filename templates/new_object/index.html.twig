@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NewObjectController!{% endblock %}
+
+{% block body %}
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Création d'un object</h1>
+
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Enregistrer</th>
+            </tr>
+            <tr>
+                <form method="post">
+                    <input type="hidden" value="create" name="action" />
+                    <td>
+                        <input type="text" id="nom" name="nomNew" />
+                    </td>
+                    <td>
+                        <textarea id="description" rows="5" cols="100" name="description"></textarea>
+                    </td>
+                    <td>
+                        <input type="submit" id="enregistrer" value="Enregistrer" />
+                    </td>
+                </form>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
