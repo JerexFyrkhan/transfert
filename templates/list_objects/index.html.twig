@@ -33,12 +33,22 @@
             <th>Id</th>
             <th>Nom</th>
             <th>Description</th>
+            <th>Propriétaire</th>
+            <th>Modifier</th>
         </tr>
         {% for object in objects %}
         <tr>
             <td>{{ object.id }}</td>
             <td>{{ object.nom }}</td>
             <td>{% apply markdown_to_html %}{{ object.description }}{% endapply %}</td>
+            <td>{{ object.proprietaire.nom }}</td>
+            <form method="post">
+                <input type="hidden" value="update" name="action"/>
+                <input type="hidden" value="{{ object.id }}" name="objectId"/>
+                <td>
+                    <input type="submit" value="Modifier" />
+                </td>
+            </form>
         </tr>
         {% endfor %}
     </table>

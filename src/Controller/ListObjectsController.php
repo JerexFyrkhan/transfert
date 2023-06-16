@@ -26,6 +26,8 @@ class ListObjectsController extends AbstractController
         if (null !== $request->get('action')) {
             if ('new' === $request->get('action')) {
                 return new RedirectResponse($this->urlGenerator->generate('app_new_object'));
+            } elseif ('update' === $request->get('action')) {
+                return new RedirectResponse($this->urlGenerator->generate('app_manage_object', ['id' => $request->get('objectId')]));
             }
         }
         $objects = $this->object756Repository->findAll();
