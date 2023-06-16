@@ -28,6 +28,7 @@
         <tr>
             <th>Nom</th>
             <th>Description</th>
+            <th>Propriétaire</th>
             <th>Enregistrer</th>
             <th>Supprimer</th>
         </tr>
@@ -39,6 +40,17 @@
                 </td>
                 <td>
                     <textarea id="description" rows="5" cols="100" name="description">{{ object.description }}</textarea>
+                </td>
+                <td>
+                    <select name="proprietaire">
+                        {% for user in users %}
+                            {% if user == object.proprietaire %}
+                                <option value="{{ user.id }}" selected>{{ user.nom }}</option>
+                            {% else %}
+                                <option value="{{ user.id }}">{{ user.nom }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
                 </td>
                 <td>
                     <input type="submit" id="enregistrer{{ object.nom }}" value="Enregistrer" />
